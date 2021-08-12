@@ -1,0 +1,31 @@
+* {
+    margin: 0px;
+}
+body {
+    border: 3px solid rgb(0, 0, 0);
+}
+form {
+    border: 3px solid rgb(0, 0, 0);
+}
+.mainTitle {
+    border: 3px solid rgb(0, 0, 0);
+    text-align: center;
+}
+.libraryTitle {
+    border: 3px solid rgb(0, 0, 0);
+    margin: 20px;
+}
+.addBtn {
+    border: 3px solid rgb(0, 0, 0);
+    margin: 20px;
+}
+
+.newBookForm {
+    display: none;
+}
+
+.displayArea {
+    border: 3px solid rgb(0, 0, 0);
+    height: 100px;
+    margin: 10px;
+}
