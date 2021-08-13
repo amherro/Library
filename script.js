@@ -1,4 +1,5 @@
 let addBtn = document.querySelector('.addBtn');
+let libraryTitle = document.querySelector('.libraryTitle')
 let submitBook = document.querySelector('.submitBook');
 let newBookForm = document.querySelector('.newBookForm')
 let bookDisplay = document.querySelector('.displayArea')
@@ -6,6 +7,7 @@ let bookDisplay = document.querySelector('.displayArea')
 addBtn.addEventListener('click', () => {
     newBookForm.style.display = 'block';
     addBtn.style.display = 'none';
+    libraryTitle.style.marginTop = '70px'
 })
 
 const library = [];
@@ -32,19 +34,21 @@ submitBook.addEventListener('click', (e) => {
         //Add a New Book to Library
         let newBook = document.createElement('div');
         newBook.classList.add('newEntry');
+
         let newTitle = document.createElement('div')
         newTitle.classList.add('newTitle', 'cardItem');
         newBook.appendChild(newTitle);
         newTitle.textContent = `Title: ${brandNewBook.title}`
+
         let newAuthor = document.createElement('div')
         newAuthor.classList.add('newAuthor', 'cardItem');
-        newAuthor.textContent = `Author: ${brandNewBook.author}`
         newBook.appendChild(newAuthor);
         newAuthor.textContent = `Author: ${brandNewBook.author}`
+        
         let newPages = document.createElement('div')
         newPages.classList.add('newPages', 'cardItem');
-        newBook.appendChild(newPages);
         newPages.textContent = `Pages: ${brandNewBook.pages}`
+        newBook.appendChild(newPages);
 
         bookDisplay.appendChild(newBook); 
 

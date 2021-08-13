@@ -9,25 +9,25 @@
 </head>
 <body>
     <header>
-        <h1 class="mainTitle">My Library</h1>
+        <img class="leftImg" src="Images/pile_of_books.png" alt="Image of Books"><h1 class="mainTitle">My Library</h1><img class="rightImg" src="Images/pile_of_books.png" alt="Image of Books">
     </header>
     <main>
-        <section class="mainContent">
-            <h2 class="libraryTitle">Add a Book to Your Library</h2>
-            <button class="addBtn">Add</button>
-
-
-            <div class="addBook">
-                <form class="newBookForm" action="#">
-                    <input data-title class="title" type="text" placeholder="Title">
-                    <input data-author class="author" type="text" placeholder="Author">
-                    <input data-pages class="pages" type="text" placeholder="Pages">
-                    <label for="hasRead">
-                        <label class="hasReadTitle">Have you read this book?</label>
-                        <input class="hasRead" type="checkbox">
-                    </label>
-                    <button class="submitBook">Submit book?</button> 
-                </form>
+        <section>
+            <div class="mainContent">
+                <h2 class="libraryTitle">Would you like to add a book to your library?</h2>
+                <button class="addBtn">Add</button>
+                <div class="addBook">
+                    <form class="newBookForm" action="#">
+                        <input data-title class="title" type="text" placeholder="Title">
+                        <input data-author class="author" type="text" placeholder="Author">
+                        <input  data-pages class="pages" type="number" placeholder="Pages">
+                        <label class="readSection" for="hasRead">
+                            <label class="readTitle">Have you read this book?</label>
+                            <input class="hasRead" type="checkbox">
+                        </label>
+                        <button class="submitBook">Submit book?</button> 
+                    </form>
+                </div>
             </div>
             <div class="displayArea">
     
