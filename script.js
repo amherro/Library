@@ -27,7 +27,7 @@ submitBook.addEventListener('click', (e) => {
     let bookAuthor = document.querySelector('[data-author]').value;
     let bookPages = document.querySelector('[data-pages]').value;
     let bookRead = document.querySelector('.hasRead')
-    let brandNewBook = new Book(bookTitle, bookAuthor, bookPages, bookRead)
+    let book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
     
     
     function addBook() { 
@@ -38,16 +38,16 @@ submitBook.addEventListener('click', (e) => {
         let newTitle = document.createElement('div')
         newTitle.classList.add('newTitle', 'cardItem');
         newBook.appendChild(newTitle);
-        newTitle.textContent = `Title: ${brandNewBook.title}`
+        newTitle.textContent = `Title: ${book.title}`
 
         let newAuthor = document.createElement('div')
         newAuthor.classList.add('newAuthor', 'cardItem');
         newBook.appendChild(newAuthor);
-        newAuthor.textContent = `Author: ${brandNewBook.author}`
+        newAuthor.textContent = `Author: ${book.author}`
         
         let newPages = document.createElement('div')
         newPages.classList.add('newPages', 'cardItem');
-        newPages.textContent = `Pages: ${brandNewBook.pages}`
+        newPages.textContent = `Pages: ${book.pages}`
         newBook.appendChild(newPages);
 
         bookDisplay.appendChild(newBook); 

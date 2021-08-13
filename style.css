@@ -2,10 +2,6 @@
     margin: 0px;
     background-color: rgb(247, 247, 247);
 }
-form {
-    border: 3px solid rgb(0, 0, 0);
-    border-radius: 10%;
-}
 header {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -76,6 +72,10 @@ header {
     display: block;
     grid-column: 3;
 }
+form {
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10%;
+}
 .newBookForm {
     display: none;
     padding: 20px;
@@ -87,13 +87,13 @@ input {
     display: block;
     border: rgb(0, 0, 0) 2px solid;
 }
-.readTitle {
-    background-color: rgba(0, 138, 0, 0.685);
-}
 label {
     grid-row: 4;
     color: rgb(0, 0, 0);
     border-bottom: 1px solid rgb(0, 0, 0);
+}
+.readTitle {
+    background-color: rgba(0, 138, 0, 0.685);
 }
 .submitBook {
     display: block;
@@ -109,6 +109,16 @@ label {
     background-color: rgb(0, 73, 182);
     font-weight: bold;
 }
+.displayArea {
+    border-top: 3px solid rgb(0, 0, 0);
+    height: fit-content;
+    min-height: 150px;
+    margin: 20px;
+    grid-column: 1 / 4;
+    grid-row: 4;
+    display: flex;
+    flex-wrap: wrap;
+}
 .newEntry {
     display: block;
     border: 3px solid black;
@@ -122,16 +132,6 @@ label {
     padding: 10px;
     background-color: rgb(0, 141, 206);
     color: rgb(255, 255, 255);
-}
-.displayArea {
-    border-top: 3px solid rgb(0, 0, 0);
-    height: fit-content;
-    min-height: 150px;
-    margin: 20px;
-    grid-column: 1 / 4;
-    grid-row: 4;
-    display: flex;
-    flex-wrap: wrap;
 }
 .readToggle {
     color: rgb(255, 255, 255);
