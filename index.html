@@ -12,21 +12,28 @@
         <h1 class="mainTitle">My Library</h1>
     </header>
     <main>
-        <h2 class="libraryTitle">Add a Book</h2>
-        <button class="addBtn">Add New Book</button>
-        <form class="newBookForm" action="#">
-            <input data-title class="title" type="text" placeholder="Title">
-            <input data-author class="author" type="text" placeholder="Author">
-            <input data-pages class="pages" type="text" placeholder="Pages">
-            <label for="hasRead">
-                <label class="hasReadTitle">Have you read this book?</label>
-                <input class="hasRead" type="checkbox">
-            </label>
-            <button class="submitBook">+</button> 
-        </form>
-        <div class="displayArea">
+        <section class="mainContent">
+            <h2 class="libraryTitle">Add a Book to Your Library</h2>
+            <button class="addBtn">Add</button>
 
-        </div>
+
+            <div class="addBook">
+                <form class="newBookForm" action="#">
+                    <input data-title class="title" type="text" placeholder="Title">
+                    <input data-author class="author" type="text" placeholder="Author">
+                    <input data-pages class="pages" type="text" placeholder="Pages">
+                    <label for="hasRead">
+                        <label class="hasReadTitle">Have you read this book?</label>
+                        <input class="hasRead" type="checkbox">
+                    </label>
+                    <button class="submitBook">Submit book?</button> 
+                </form>
+            </div>
+            <div class="displayArea">
+    
+            </div>
+        </section>
+        
     </main>
     <footer>
 

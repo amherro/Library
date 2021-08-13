@@ -5,8 +5,10 @@ let bookDisplay = document.querySelector('.displayArea')
 
 addBtn.addEventListener('click', () => {
     newBookForm.style.display = 'block';
+    addBtn.style.display = 'none';
 })
 
+const library = [];
 
 function Book (title, author, pages, readStatus) {
     this.title = title;
@@ -30,26 +32,40 @@ submitBook.addEventListener('click', (e) => {
         //Add a New Book to Library
         let newBook = document.createElement('div');
         newBook.classList.add('newEntry');
+        let newTitle = document.createElement('div')
+        newTitle.classList.add('newTitle', 'cardItem');
+        newBook.appendChild(newTitle);
+        newTitle.textContent = `Title: ${brandNewBook.title}`
+        let newAuthor = document.createElement('div')
+        newAuthor.classList.add('newAuthor', 'cardItem');
+        newAuthor.textContent = `Author: ${brandNewBook.author}`
+        newBook.appendChild(newAuthor);
+        newAuthor.textContent = `Author: ${brandNewBook.author}`
+        let newPages = document.createElement('div')
+        newPages.classList.add('newPages', 'cardItem');
+        newBook.appendChild(newPages);
+        newPages.textContent = `Pages: ${brandNewBook.pages}`
 
-        newBook.textContent = `Title: ${brandNewBook.title} Author: ${brandNewBook.author} 
-        Pages: ${brandNewBook.pages}`
+        bookDisplay.appendChild(newBook); 
+
+        library.push(newBook.textContent);
 
         //Toggle Read Status
         let readSection = document.createElement('button')
         if(bookRead.checked == true){
             readSection.classList.add('readToggle')
-            readSection.textContent = 'I have read this book!';
+            readSection.textContent = 'Read';
             newBook.appendChild(readSection);
         } else {
             readSection.classList.add('readToggle')
-            readSection.textContent = 'I have not read this book yet!';
+            readSection.textContent = 'Not Read';
             newBook.appendChild(readSection);
         }
         readSection.addEventListener('click', () => {
-            if(readSection.textContent === 'I have read this book!') {
-                readSection.textContent = 'I have not read this book yet!'
-            } else if (readSection.textContent === 'I have not read this book yet!') {
-                readSection.textContent = 'I have read this book!'
+            if(readSection.textContent === 'Read') {
+                readSection.textContent = 'Not Read'
+            } else if (readSection.textContent === 'Not Read') {
+                readSection.textContent = 'Read'
             }
         })
 
@@ -61,8 +77,6 @@ submitBook.addEventListener('click', (e) => {
         deleteBtn.addEventListener('click', () => {
             newBook.style.display = 'none';
         })
-
-        bookDisplay.appendChild(newBook); 
     }
     addBook();
 
