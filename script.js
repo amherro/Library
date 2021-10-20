@@ -1,97 +1,143 @@
-function Library() {
-    let addBtn = document.querySelector('.addBtn');
-    let libraryTitle = document.querySelector('.libraryTitle')
-    let submitBook = document.querySelector('.submitBook');
-    let newBookForm = document.querySelector('.newBookForm')
-    let bookDisplay = document.querySelector('.displayArea')
-
-    addBtn.addEventListener('click', () => {
-        newBookForm.style.display = 'block';
-        addBtn.style.display = 'none';
-        libraryTitle.style.marginTop = '70px'
-    })
-
-    const library = [];
-
-    function Book (title, author, pages, readStatus) {
+// Book Class
+class Book {
+    constructor(title, author, pages, boookRead) {
         this.title = title;
-        this.author = author;
+        this.author = author; 
         this.pages = pages;
-        this.readStatus = readStatus;
+        this.boookRead = boookRead;
+    }
+}
+
+//Library Class
+class Library {
+    static showBook = () => {
+
+        // Call .getBook() method from UserStorage class
+
+        const storedBooks = [
+            {
+                title: 'Harry Potter',
+                author: 'JK Rowling',
+                pages: '597',
+                bookRead: true,
+            },
+            {
+                title: 'A Game of Thrones',
+                author: 'George RR Martin',
+                pages: '997',
+                bookRead: false,
+            }
+        ]
+        const bookList = storedBooks
+
+        bookList.forEach((book) => Library.addBook(book))
+    }
+    static addBook = (book) => {
+        const displayArea = document.querySelector('.displayArea');
+        let newBook = document.createElement('div');
+        newBook.classList.add('newEntry');
+
+        let newTitle = document.createElement('div')
+        newTitle.classList.add('newTitle', 'cardItem');
+        newBook.appendChild(newTitle);
+        newTitle.textContent = `Title: ${book.title}`
+
+        let newAuthor = document.createElement('div')
+        newAuthor.classList.add('newAuthor', 'cardItem');
+        newBook.appendChild(newAuthor);
+        newAuthor.textContent = `Author: ${book.author}`
+        
+        let newPages = document.createElement('div')
+        newPages.classList.add('newPages', 'cardItem');
+        newPages.textContent = `Pages: ${book.pages}`
+        newBook.appendChild(newPages);
+
+        /* 
+        Take out these two 
+        and put them in their own method
+        */
+        let readSection = document.createElement('button')
+        readSection.classList.add('readToggle')
+        if(book.bookRead === true){
+            readSection.textContent = 'Read';
+        } else {
+            readSection.textContent = 'Not Read';
+        }
+        newBook.appendChild(readSection);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('deleteBtn');
+        deleteBtn.textContent = 'X';
+        newBook.appendChild(deleteBtn);
+
+        displayArea.appendChild(newBook); 
+    }
+    static clearInput = () => {
+        document.querySelector('.title').value = '';
+        document.querySelector('.author').value = '';
+        document.querySelector('.pages').value = '';
+        document.querySelector('.hasRead').value = '';
     }
 
-
-    submitBook.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        let bookTitle = document.querySelector('[data-title]').value;
-        let bookAuthor = document.querySelector('[data-author]').value;
-        let bookPages = document.querySelector('[data-pages]').value;
-        let bookRead = document.querySelector('.hasRead')
-        let book = new Book(bookTitle, bookAuthor, bookPages, bookRead)
-        
-        
-        function addBook() { 
-            //Add a New Book to Library
-            let newBook = document.createElement('div');
-            newBook.classList.add('newEntry');
-
-            let newTitle = document.createElement('div')
-            newTitle.classList.add('newTitle', 'cardItem');
-            newBook.appendChild(newTitle);
-            newTitle.textContent = `Title: ${book.title}`
-
-            let newAuthor = document.createElement('div')
-            newAuthor.classList.add('newAuthor', 'cardItem');
-            newBook.appendChild(newAuthor);
-            newAuthor.textContent = `Author: ${book.author}`
-            
-            let newPages = document.createElement('div')
-            newPages.classList.add('newPages', 'cardItem');
-            newPages.textContent = `Pages: ${book.pages}`
-            newBook.appendChild(newPages);
-
-            bookDisplay.appendChild(newBook); 
-
-            library.push(newBook.textContent);
-
-            //Toggle Read Status
-            let readSection = document.createElement('button')
-            if(bookRead.checked == true){
-                readSection.classList.add('readToggle')
-                readSection.textContent = 'Read';
-                newBook.appendChild(readSection);
-            } else {
-                readSection.classList.add('readToggle')
-                readSection.textContent = 'Not Read';
-                newBook.appendChild(readSection);
+    static deleteBook = (item) => {
+        if(item.classList.contains('deleteBtn')) {
+            item.parentElement.remove() 
+        }
+    }
+    static toggleBookRead = (button) => {
+        if(button.classList.contains('readToggle')) {
+            if(button.textContent === 'Read') {
+                button.textContent = 'Not Read'
+            } else if (button.textContent === 'Not Read') {
+                button.textContent = 'Read'
             }
-            readSection.addEventListener('click', () => {
-                if(readSection.textContent === 'Read') {
-                    readSection.textContent = 'Not Read'
-                } else if (readSection.textContent === 'Not Read') {
-                    readSection.textContent = 'Read'
-                }
-            })
-
-            //Delete Button
-            const deleteBtn = document.createElement('button');
-            deleteBtn.classList.add('deleteBtn');
-            deleteBtn.textContent = 'X';
-            newBook.appendChild(deleteBtn);
-            deleteBtn.addEventListener('click', () => {
-                newBook.style.display = 'none';
-            })
         }
-        addBook();
+    }
+}
+
+//Storage Class
+class UserStorage {
+    getBook = () => {
+
+    }
+    addBook = () => {
+
+    }
+    updateReadStatus = () => {
+
+    }
+    removeBook = () => {
+
+    }
+}
+
+// Display book in library
+document.addEventListener('DOMContentLoaded', Library.showBook)
 
 
-        function clearInput() {
-            document.querySelector('.title').value = '';
-            document.querySelector('.author').value = '';
-            document.querySelector('.pages').value = '';
-        }
-        clearInput();
-    })}
+// Add book
+document.querySelector('.submitBook').addEventListener('click', (e) => {
+    e.preventDefault();
+    const title = document.querySelector('[data-title]').value;
+    const author = document.querySelector('[data-author]').value;
+    const pages = document.querySelector('[data-pages]').value;
+    const bookRead = document.querySelector('.hasRead').value;
 
-Library();
+    const book = new Book(title, author, pages, bookRead)
+
+    Library.addBook(book)
+
+    Library.clearInput();
+})
+
+// Delete book
+document.querySelector('.displayArea').addEventListener('click', (e) => {
+    e.preventDefault();
+    Library.deleteBook(e.target)
+})
+
+// Mark book as Read/Not Read
+document.querySelector('.displayArea').addEventListener('click', (e) => {
+    e.preventDefault();
+    Library.toggleBookRead(e.target)
+})
