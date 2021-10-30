@@ -52,13 +52,10 @@ class Library {
         newPages.textContent = `Pages: ${book.pages}`
         newBook.appendChild(newPages);
 
-        /* 
-        Take out these two 
-        and put them in their own method
-        */
+        const bookRead = document.querySelector('.hasRead').checked;
         let readSection = document.createElement('button')
         readSection.classList.add('readToggle')
-        if(book.bookRead === true){
+        if(bookRead == true){
             readSection.textContent = 'Read';
         } else {
             readSection.textContent = 'Not Read';
@@ -96,24 +93,37 @@ class Library {
 }
 
 //Storage Class
-class UserStorage {
-    getBook = () => {
+// class UserStorage {
+//     getBook = () => {
 
-    }
-    addBook = () => {
+//     }
+//     addBook = () => {
 
-    }
-    updateReadStatus = () => {
+//     }
+//     updateReadStatus = () => {
 
-    }
-    removeBook = () => {
+//     }
+//     removeBook = () => {
 
-    }
-}
+//     }
+// }
 
 // Display book in library
 document.addEventListener('DOMContentLoaded', Library.showBook)
 
+// Toggle Add Button
+const addButton = document.querySelector('.addBtn');
+addButton.addEventListener('click', () => {
+    addButton.style.display = 'none';
+    document.querySelector('.addBook').style.display = 'block';
+})
+
+// Close Button
+const closeBtn = document.querySelector('.closeBtn');
+closeBtn.addEventListener('click', () => {
+    document.querySelector('.addBook').style.display = 'none';
+    addButton.style.display = 'block';
+})
 
 // Add book
 document.querySelector('.submitBook').addEventListener('click', (e) => {
@@ -121,7 +131,7 @@ document.querySelector('.submitBook').addEventListener('click', (e) => {
     const title = document.querySelector('[data-title]').value;
     const author = document.querySelector('[data-author]').value;
     const pages = document.querySelector('[data-pages]').value;
-    const bookRead = document.querySelector('.hasRead').value;
+    const bookRead = document.querySelector('.hasRead').checked;
 
     const book = new Book(title, author, pages, bookRead)
 
@@ -139,5 +149,5 @@ document.querySelector('.displayArea').addEventListener('click', (e) => {
 // Mark book as Read/Not Read
 document.querySelector('.displayArea').addEventListener('click', (e) => {
     e.preventDefault();
-    Library.toggleBookRead(e.target)
+    Library.toggleBookRead(e.target);
 })
