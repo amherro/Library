@@ -1,0 +1,184 @@
+* {
+    margin: 0px;
+    background-color: rgb(247, 247, 247);
+}
+header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.leftImg {
+    width: 100px;
+    height: 100px;
+    margin: 20px 0px 0px 100px;
+    grid-row: 1;
+    justify-self: right;
+}
+.rightImg {
+    width: 100px;
+    height: 100px;
+    margin: 20px 100px 0px 0px;
+    justify-self: left;
+    grid-row: 1;
+}
+.mainTitle {
+    /* border-bottom: 3px solid rgb(0, 0, 0); */
+    text-align: center;
+    padding: 10px;
+    margin: 20px 10px 0px 10px;
+    height: 40px;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+}
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.libraryTitle {
+    border: 3px solid rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 138, 0, 0.685);
+    font-size: 18px;
+    padding: 20px;
+    height: fit-content;
+    margin: 20px 0px;
+
+    text-align: center;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+}
+.addBtn {
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 70%;
+    background-color: rgba(0, 138, 0, 0.685);
+    color: rgb(255, 255, 255);
+    width: 80px;
+    height: 50px;
+    margin-left: 25px;
+}
+.addBtn:hover {
+    background-color: rgb(10, 126, 0);
+}
+.addBtn:active {
+    background-color: rgb(6, 77, 0);
+    font-weight: bold;
+}
+.addBook {
+    display: none;
+    grid-column: 3;
+}
+form {
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 10%;
+}
+.newBookForm {
+    display: block;
+    padding: 20px;
+    width: 200px;
+    background-color: rgba(0, 138, 0, 0.685);
+}
+.closeBtn {
+    float: right;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
+}
+.closeBtn:hover {
+    background-color: rgb(224, 0, 0);
+}
+.closeBtn:active {
+    font-weight: bold;
+    background-color: rgb(185, 0, 0);
+}
+input {
+    margin: 5px;
+    display: block;
+    border: rgb(0, 0, 0) 2px solid;
+}
+label {
+    grid-row: 4;
+    color: rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.readTitle {
+    background-color: rgba(0, 138, 0, 0.685);
+}
+.submitBook {
+    display: block;
+    padding: 10px;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgb(0, 141, 206);
+    color: rgb(255, 255, 255);
+}
+.submitBook:hover {
+    background-color: rgb(0, 86, 214);
+}
+.submitBook:active {
+    background-color: rgb(0, 73, 182);
+    font-weight: bold;
+}
+.displayArea {
+    border-top: 3px solid rgb(0, 0, 0);
+    height: fit-content;
+    min-height: 150px;
+    margin: 20px;
+    grid-column: 1 / 4;
+    grid-row: 4;
+    display: flex;
+    flex-wrap: wrap;
+}
+.newEntry {
+    display: block;
+    border: 3px solid black;
+    border-radius: 10%;
+    padding: 10px;
+    margin: 35px;
+    width: 200px;
+    background-color: rgb(0, 141, 206);
+}
+.cardItem {
+    padding: 10px;
+    background-color: rgb(0, 141, 206);
+    color: rgb(255, 255, 255);
+    font-family: 'Copperplate', 'Arial', 'Times New Roman';
+}
+.newTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+.readToggle {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 138, 0, 0.685);
+    padding: 10px;
+    border: 2px solid rgb(0, 0, 0);
+    text-align: center;
+}
+.readToggle:hover {
+    background-color: rgb(10, 126, 0);
+}
+.readToggle:active {
+    background-color: rgb(6, 77, 0);
+    font-weight: bold;
+}
+.deleteBtn {
+    margin: 20px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
+}
+.deleteBtn:hover {
+    background-color: rgb(224, 0, 0);
+}
+.deleteBtn:active {
+    font-weight: bold;
+    background-color: rgb(185, 0, 0);
+}
+
+@media (max-width: 600px) {
+    .displayArea {
+        justify-content: space-around;
+    }
+}
