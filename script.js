@@ -93,22 +93,13 @@ class UserStorage {
         localStorage.setItem('booksInStorage', JSON.stringify(currentBookList));
     }
     static removeBook = (title) => {
-        console.log(title);
         const currentBookList = UserStorage.getBooks();
         let index = currentBookList.findIndex((book) => {
             if(title === book.title) {
                 return true;
             }
         })
-        // console.log(index)
         currentBookList.splice(index, 1)
-        // currentBookList.forEach((book, index) => {
-        //     if(title === book.title) {
-        //         console.log(index)
-        //         currentBookList.splice(index, 1);
-        //     }
-        // })
-        console.log(currentBookList)
         localStorage.setItem('booksInStorage', JSON.stringify(currentBookList));
     }
 }
@@ -155,7 +146,6 @@ document.querySelector('.submitBook').addEventListener('click', (e) => {
 document.querySelector('.displayArea').addEventListener('click', (e) => {
     e.preventDefault();
     Library.deleteBook(e.target);
-    console.log(e.target.parentElement.firstChild)
     UserStorage.removeBook(`${e.target.parentElement.firstChild.textContent}`)
 })
 
