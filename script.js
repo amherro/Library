@@ -23,7 +23,7 @@ class Library {
         let newTitle = document.createElement('div')
         newTitle.classList.add('newTitle', 'cardItem');
         newBook.appendChild(newTitle);
-        newTitle.textContent = `Title: ${book.title}`
+        newTitle.textContent = `${book.title}`
 
         let newAuthor = document.createElement('div')
         newAuthor.classList.add('newAuthor', 'cardItem');
@@ -79,6 +79,7 @@ class Library {
 class UserStorage {
     static getBooks = () => {
         let booksInStorage;
+
         if(localStorage.getItem('booksInStorage') === null) {
             booksInStorage = [];
         } else {
@@ -92,13 +93,23 @@ class UserStorage {
         localStorage.setItem('booksInStorage', JSON.stringify(currentBookList));
     }
     static removeBook = (title) => {
+        console.log(title);
         const currentBookList = UserStorage.getBooks();
-        currentBookList.forEach((book, index) => {
-            if(book.title === title) {
-                currentBookList.splice(index, 1);
+        let index = currentBookList.findIndex((book) => {
+            if(title === book.title) {
+                return true;
             }
         })
-        JSON.stringify(localStorage.setItem('booksInStorage', currentBookList));
+        // console.log(index)
+        currentBookList.splice(index, 1)
+        // currentBookList.forEach((book, index) => {
+        //     if(title === book.title) {
+        //         console.log(index)
+        //         currentBookList.splice(index, 1);
+        //     }
+        // })
+        console.log(currentBookList)
+        localStorage.setItem('booksInStorage', JSON.stringify(currentBookList));
     }
 }
 
@@ -144,6 +155,8 @@ document.querySelector('.submitBook').addEventListener('click', (e) => {
 document.querySelector('.displayArea').addEventListener('click', (e) => {
     e.preventDefault();
     Library.deleteBook(e.target);
+    console.log(e.target.parentElement.firstChild)
+    UserStorage.removeBook(`${e.target.parentElement.firstChild.textContent}`)
 })
 
 // Mark book as Read/Not Read
