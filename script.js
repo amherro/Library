@@ -1,34 +1,17 @@
 // Book Class
 class Book {
-    constructor(title, author, pages, boookRead) {
+    constructor(title, author, pages, bookRead) {
         this.title = title;
         this.author = author; 
         this.pages = pages;
-        this.boookRead = boookRead;
+        this.bookRead = bookRead;
     }
 }
 
 //Library Class
 class Library {
     static showBook = () => {
-
-        // Call .getBook() method from UserStorage class
-
-        const storedBooks = [
-            {
-                title: 'Harry Potter',
-                author: 'JK Rowling',
-                pages: '597',
-                bookRead: true,
-            },
-            {
-                title: 'A Game of Thrones',
-                author: 'George RR Martin',
-                pages: '997',
-                bookRead: false,
-            }
-        ]
-        const bookList = storedBooks
+        const bookList = UserStorage.getBooks();
 
         bookList.forEach((book) => Library.addBook(book))
     }
@@ -92,21 +75,32 @@ class Library {
     }
 }
 
-//Storage Class
-// class UserStorage {
-//     getBook = () => {
-
-//     }
-//     addBook = () => {
-
-//     }
-//     updateReadStatus = () => {
-
-//     }
-//     removeBook = () => {
-
-//     }
-// }
+// Local Storage Class
+class UserStorage {
+    static getBooks = () => {
+        let booksInStorage;
+        if(localStorage.getItem('booksInStorage') === null) {
+            booksInStorage = [];
+        } else {
+            booksInStorage = JSON.parse(localStorage.getItem('booksInStorage'));
+        }
+        return booksInStorage;
+    }
+    static addBook = (book) => {
+        const currentBookList = UserStorage.getBooks();
+        currentBookList.push(book);
+        localStorage.setItem('booksInStorage', JSON.stringify(currentBookList));
+    }
+    static removeBook = (title) => {
+        const currentBookList = UserStorage.getBooks();
+        currentBookList.forEach((book, index) => {
+            if(book.title === title) {
+                currentBookList.splice(index, 1);
+            }
+        })
+        JSON.stringify(localStorage.setItem('booksInStorage', currentBookList));
+    }
+}
 
 // Display book in library
 document.addEventListener('DOMContentLoaded', Library.showBook)
@@ -118,7 +112,7 @@ addButton.addEventListener('click', () => {
     document.querySelector('.addBook').style.display = 'block';
 })
 
-// Close Button
+// Close Form Button
 const closeBtn = document.querySelector('.closeBtn');
 closeBtn.addEventListener('click', () => {
     document.querySelector('.addBook').style.display = 'none';
@@ -135,15 +129,21 @@ document.querySelector('.submitBook').addEventListener('click', (e) => {
 
     const book = new Book(title, author, pages, bookRead)
 
+    // Add Book to UI
     Library.addBook(book)
 
+    // Add Book to Local Storage
+    UserStorage.addBook(book); 
+
+    // Clear Input Fields
     Library.clearInput();
 })
 
-// Delete book
+
+// Delete Book
 document.querySelector('.displayArea').addEventListener('click', (e) => {
     e.preventDefault();
-    Library.deleteBook(e.target)
+    Library.deleteBook(e.target);
 })
 
 // Mark book as Read/Not Read
